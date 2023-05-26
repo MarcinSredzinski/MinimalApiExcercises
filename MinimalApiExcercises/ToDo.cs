@@ -1,6 +1,6 @@
 ﻿namespace MinimalApiExcercises;
 
-public class ToDo
+public class Todo
 {
     public int Id { get; set; }
     public string? Name { get; set; }
