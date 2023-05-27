@@ -8,8 +8,7 @@ var app = builder.Build();
 
 var todoItems = app.MapGroup("/todoitems");
 
-todoItems.MapGet("/", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
+todoItems.MapGet("/", GetAllTodos());
 
 todoItems.MapGet("/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
@@ -57,3 +56,8 @@ todoItems.MapDelete("/{id}", async (int id, TodoDb db) =>
 });
 
 app.Run();
+
+static async Task<IResult> GetAllTodos(TodoDb db)
+{
+    return TypedResults.Ok(await db.Todos.ToArrayAsync());
+}
