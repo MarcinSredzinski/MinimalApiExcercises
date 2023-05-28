@@ -15,6 +15,20 @@ todoItems.MapPost("/", CreateTodo);
 todoItems.MapPut("/{id}", UpdateTodo);
 todoItems.MapDelete("/{id}", DeleteTodo);
 
+string ColorName(string color) => $"Color selected: {color}";
+
+//https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-7.0
+app.MapGet("/colorSelector/{color}", ColorName)
+    .AddEndpointFilter(async (invocationContext, next) =>
+    {
+        var color = invocationContext.GetArgument<string>(0);
+        if (color == "Red")
+        {
+            return Results.Problem("Red is not allowed here");
+        }
+        return await next(invocationContext);
+    });
+
 app.Run();
 
 static async Task<IResult> GetAllTodos(TodoDb db)
