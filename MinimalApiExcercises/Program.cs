@@ -29,7 +29,8 @@ app.MapGet("/colorSelector/{color}", ColorName)
         return await next(invocationContext);
     });
 
-//Next steps - follow https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-7.0 and then authentication and authorization documentation. 
+//Next steps - follow https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-7.0 and then
+//authentication and authorization documentation https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security?view=aspnetcore-7.0
 
 
 app.Run();
