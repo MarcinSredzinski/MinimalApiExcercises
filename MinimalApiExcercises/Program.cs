@@ -31,6 +31,7 @@ app.MapGet("/colorSelector/{color}", ColorName)
 
 app.Run();
 
+#region Static TypedResults methods
 static async Task<IResult> GetAllTodos(TodoDb db)
 {
     return TypedResults.Ok(await db.Todos.ToArrayAsync());
@@ -82,3 +83,4 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 
     return TypedResults.NotFound();
 }
+#endregion
