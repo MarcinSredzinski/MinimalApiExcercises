@@ -4,6 +4,7 @@ using MinimalApiExcercises;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddAuthentication();
 var app = builder.Build();
 
 var todoItems = app.MapGroup("/todoitems");
